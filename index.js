@@ -23,17 +23,7 @@ const textCheckRole = ["friend","junior"]
 const role = ["928828694351474718","928829588140863510"]
 
 client.on("messageCreate", (msg) => {
-    
-    if (msg.channel.type === "GUILD_TEXT") {
-        if (msg.channelId === "928826905103323136") {
-            if (msg.content === textRole) {
-                msg.react("✅").then(() => {
-                    msg.author.send("รับยศพิมพ์ friend หรือ junior")
-                    setTimeout(() => msg.delete(), 300);
-                })
-            }
-        }
-    } else if (msg.channel.type === "DM" && !msg.author.bot) {
+    if (msg.channel.type === "DM" && !msg.author.bot) {
         if (textCheckRole.includes(msg.content)) {
             msg.react("✅").then(() => {
                 setTimeout(() => {
@@ -47,7 +37,16 @@ client.on("messageCreate", (msg) => {
                 }
             })
         }
-    }
+    } else if (msg.channel.type === "GUILD_TEXT") {
+        if (msg.channelId === "928826905103323136") {
+            if (msg.content === textRole) {
+                msg.react("✅").then(() => {
+                    msg.author.send("รับยศพิมพ์ friend หรือ junior")
+                    setTimeout(() => msg.delete(), 300);
+                })
+            }
+        }
+    } 
     
 })
 
