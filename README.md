@@ -2,8 +2,7 @@
 
 Plan | Success
 ----- | :-----:
-Alert Classroom | ❌
 Get Role With text | ✔️
-Api | ❌
-Schedule | ❌
+Api | ✔️
+Schedule | ✔️
 Music Bot | ❌
