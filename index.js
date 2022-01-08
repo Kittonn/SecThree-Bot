@@ -1,6 +1,23 @@
 const { Client, Intents } = require('discord.js');
 const dotenv = require('dotenv');
 const fs =require('fs')
+
+const { initializeApp } = require("firebase/app");
+const { getFirestore, collection, getDocs } = require('firebase/firestore/lite');
+
+const firebaseConfig = {
+  apiKey: process.env.API_KEY,
+  authDomain: "secthree-bot.firebaseapp.com",
+  projectId: "secthree-bot",
+  storageBucket: "secthree-bot.appspot.com",
+  messagingSenderId: "519178478877",
+  appId: "1:519178478877:web:a9c66671d3c11915a36df4"
+};
+
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 const client = new Client({ 
     intents: [
         Intents.FLAGS.GUILDS,
@@ -9,8 +26,11 @@ const client = new Client({
         Intents.FLAGS.GUILD_MESSAGE_TYPING,
         Intents.FLAGS.DIRECT_MESSAGES,
         Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
-        Intents.FLAGS.DIRECT_MESSAGE_TYPING],
+        Intents.FLAGS.DIRECT_MESSAGE_TYPING,
+        Intents.FLAGS.GUILD_VOICE_STATES],
         partials: ["CHANNEL", "MESSAGE", "REACTION", "USER"], });
+
+
 
 dotenv.config()
 
@@ -58,5 +78,21 @@ client.on("messageCreate", (msg) => {
     } 
     
 })
+
+//async function getFriend(db) {
+//    const Friend = collection(db, 'Friend');
+//    const friendSnapshot = await getDocs(Friend);
+//    const friendList = friendSnapshot.docs.map(doc => doc.data());
+//    return friendList;
+//}
+//
+//(async () => {
+//    const Friend = await getFriend(db);
+//
+//    console.log(Friend);
+//})();
+
+
+
 
 client.login(process.env.TOKEN);
