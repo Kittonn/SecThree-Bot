@@ -10,7 +10,7 @@ const tcas65 = new MessageEmbed()
     .setURL(url_mytcas) 
     .setTitle('🗓️ ปฏิทิน TCAS65')
     .setImage(url_tcas65)
-    .setFooter('อ้างอิงข้อมูลจาก www.mytcas.com', url_mytcas_img)
+    .setFooter({text:'อ้างอิงข้อมูลจาก www.mytcas.com', iconURL:url_mytcas_img})
 
 module.exports = {
 	data: new SlashCommandBuilder()

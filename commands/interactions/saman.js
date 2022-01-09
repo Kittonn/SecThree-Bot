@@ -17,7 +17,7 @@ const saman = new MessageEmbed()
     .setTitle('⏳ ตารางสอบ 9 วิชาสามัญ')
     .setDescription(`====== **เหลือเวลาเตรียมตัวอีก ${txt_totalday} วัน** ======`)
     .setImage(url_9saman_img)
-    .setFooter('อ้างอิงข้อมูลจาก www.mytcas.com', url_mytcas_img)
+    .setFooter({text:'อ้างอิงข้อมูลจาก www.mytcas.com',iconURL: url_mytcas_img})
 
 module.exports = {
 	data: new SlashCommandBuilder()

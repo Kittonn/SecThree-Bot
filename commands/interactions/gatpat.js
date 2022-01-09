@@ -17,7 +17,7 @@ const gatpat = new MessageEmbed()
     .setURL(url_mytcas)
     .setDescription(`====== **เหลือเวลาเตรียมตัวอีก ${txt_totalday} วัน** ======`)
     .setImage(url_gatpat_img)
-    .setFooter('อ้างอิงข้อมูลจาก www.mytcas.com', url_mytcas_img)
+    .setFooter({text:'อ้างอิงข้อมูลจาก www.mytcas.com',iconURL: url_mytcas_img})
 
 module.exports = {
 	data: new SlashCommandBuilder()

@@ -1,4 +1,6 @@
-const { MessageEmbed } = require("discord.js");
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const {MessageEmbed} = require('discord.js')
+
 const dotenv = require('dotenv');
 dotenv.config()
 
@@ -25,11 +27,21 @@ const getBook = async (db) => {
 }
 
 module.exports = {
-    name: "book",
-    async execute(msg,argument) {
+    data: new SlashCommandBuilder()
+            .setName('book')
+            .addStringOption(option => option
+                            .setName('subject')
+                            .setDescription('subject book.')
+                            .setRequired(true))
+            .setDescription('Send book.'),
+    
+    async execute(interaction) {
+
+        const args = interaction.options.getString('subject')
         const Book = await getBook(db)
+
         for (let i = 0; i < Book.length; i++) {
-            if (argument === Book[i].subject){
+            if (args === Book[i].subject){
                 const subject = Book[i].subject
                 const link = Book[i].link
 
@@ -39,10 +51,13 @@ module.exports = {
                     .setDescription(`💯**Link :** ${link}`)
                     .setFooter({text: 'อ้างอิงจาก Firebase'})
                 
-                return msg.channel.send({embeds:[bookEmbed]})
+                return interaction.reply({embeds: [bookEmbed]})
 
             }
             
         }
+
+
+        interaction.reply({embeds: [bookEmbed]})
     }
 }

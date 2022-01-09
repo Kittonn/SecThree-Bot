@@ -39,6 +39,7 @@ module.exports = {
                         {name: 'เสียชีวิตรวม', value: `${deaths.toLocaleString()}`, inline: true},
                         {name: 'รักษาหายรวม', value: `${recovered.toLocaleString()}`, inline: true}
                     )
+                    .setFooter({text: 'อ้างอิงจากองค์การอนามัยโลก'})
                     
                     
                 return msg.channel.send({embeds: [covidEmbed]})
